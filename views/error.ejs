@@ -1,3 +1,20 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<body style="background: #dedede;">
+    <div class="page-wrap d-flex flex-row align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 text-center">
+                    <span class="display-1 d-block"><%= error.status %> </span>
+                    <div class="mb-4 lead"><%= message %></div>
+                    <div style="padding: 0 0 3% 12%;">
+                        <pre class='text-left'><%= error.stack %></pre>
+                    </div>
+
+                    <a href="/" class="btn btn-link">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div> 
+</body>

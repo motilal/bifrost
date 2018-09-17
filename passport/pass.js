@@ -2,7 +2,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt-nodejs');
 
 module.exports = function (passport) {
-    passport.use('login', new LocalStrategy({
+    passport.use('admin_login', new LocalStrategy({
         passReqToCallback: true,
         usernameField: 'email',
         passwordField: 'password'
@@ -10,7 +10,7 @@ module.exports = function (passport) {
     function (req, email, password, done) {
         // check in mongo if a user with username exists or not  
         connection.getConnection(function (err, connection) {
-            connection.query('SELECT * from users where email = ?', email, function (err, user) {
+            connection.query('SELECT * from users where active = 1 AND role = 1 AND email = ?', email, function (err, user) {
                 connection.release();
                 if (err)
                     return done(err);
@@ -79,10 +79,12 @@ module.exports = function (passport) {
 
     passport.deserializeUser(function (id, done) {
         connection.getConnection(function (err, connection) {
-            connection.query('SELECT * from users where id = ?', id, function (err, user) {
+            connection.query('SELECT id,first_name,last_name,email,phone,dob from users where id = ?', id, function (err, user) {
                 connection.release();
                 if (err)
                     throw err;
+                var gravatar = require('gravatar');
+                user[0].gravatar_url = gravatar.url(user[0].email, {protocol: 'http', s: '200'});
                 done(err, user[0]);
             });
         });

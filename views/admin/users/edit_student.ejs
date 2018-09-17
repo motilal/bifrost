@@ -1,0 +1,79 @@
+<%layout('../layout/layout')%>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="element-wrapper">
+            <h6 class="element-header">Manage Student</h6>
+            <div class="element-box">
+                <form id="formValidate" action="/admin/users/update_student/<%= row.id %>" method="post">
+                    <h5 class="form-header">Edit Student</h5> 
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for=""> First Name
+                                </label>
+                                <input class="form-control" data-error="Please input your First Name" placeholder="First Name" name="first_name" value="<%= row.first_name %>" required="required" type="text">
+                                <div class="help-block form-text with-errors form-control-feedback">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="">Last Name
+                                </label>
+                                <input class="form-control" data-error="Please input your Last Name" placeholder="Last Name" required="required" name="last_name" value="<%= row.last_name %>" type="text">
+                                <div class="help-block form-text with-errors form-control-feedback">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for=""> Date of Birth </label>
+                                <input class="single-daterange form-control" placeholder="Date of birth" type="text" name="dob" value="<%= row.dob ? moment(row.dob).format('MM/D/YYYY'):'' %>">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for=""> Email address
+                                </label>
+                                <input class="form-control" data-error="Your email address is invalid" placeholder="Enter email" name="email" required="required" value="<%= row.email %>" type="email">
+                                <div class="help-block form-text with-errors form-control-feedback">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for=""> Password
+                                </label>
+                                <input class="form-control" data-minlength="6" placeholder="Password" name="password" type="password">
+                                <div class="help-block form-text text-muted form-control-feedback">Minimum of 6 characters
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="">Confirm Password
+                                </label>
+                                <input class="form-control" data-match-error="Passwords don&#39;t match" name="cpassword" placeholder="Confirm Password" type="password">
+                                <div class="help-block form-text with-errors form-control-feedback">
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="form-buttons-w">
+                        <button class="btn btn-primary" type="submit"> Submit </button>
+                        <a class="btn btn-primary" href='/admin/users/students'>Cancel </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>  

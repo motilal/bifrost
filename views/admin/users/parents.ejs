@@ -1,0 +1,45 @@
+<%layout('../layout/layout')%>
+<div class="row">
+    <div class="col-sm-12 col-xxl-6">
+        <div class="element-wrapper">
+            <h6 class="element-header">Manage Parents</h6>
+            <div class="element-box">
+
+                <h5 class="form-header">Manage Parents</h5>
+                <div class="table-responsive">
+                    <table id="dataTable1" width="100%" class="table table-striped table-lightfont">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>EMail</th>
+                                <th>Phone</th>
+                                <th>Last Login</th>
+                                <th>Status</th> 
+                                <th>Action</th>
+                            </tr>
+                        </thead> 
+                        <tbody>
+                            <% if(result.length>0){ %>
+                            <% result.forEach(function(row) { %>
+                            <tr>
+                                <td><%= row.first_name+' '+row.last_name %></td>
+                                <td><%= row.email %></td>
+                                <td><%= row.phone %></td>
+                                <td><%= row.last_login ? moment(row.last_login).format('D/MM/YYYY HH:mm'):'-' %></td>
+                                <td>
+                                    <div class="status-pill <%= row.active==1 ? 'green':'red' %>" data-title="<%= row.active==1 ? 'Active':'InActive' %>" data-toggle="tooltip" data-original-title="" title=""></div>
+                                </td>
+                                <td class="row-actions">
+                                    <a href="/admin/users/edit_parent/<%= row.id %>"><i class="os-icon os-icon-ui-49"></i></a> 
+                                    <a class="danger" href="/admin/users/delete_parent/<%= row.id %>" onclick='return confirm("Are you sure to wants delete this.");'><i class="os-icon os-icon-ui-15"></i></a>
+                                </td>
+                            </tr>
+                            <% }); %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>  
+    </div> 
+</div>

@@ -6,11 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var engine = require('ejs-locals')
 var mysql = require("mysql");
-var validator = require('node-input-validator');
 var app = express();
 var passport = require('passport');
 var expressSession = require('express-session');
-var flash = require('connect-flash');
+var flash = require('express-flash');
+var moment = require('moment');
 
 app.use(function (req, res, next) {
     global.connection = mysql.createPool({
@@ -20,6 +20,7 @@ app.use(function (req, res, next) {
         database: 'bifrost',
         debug: false
     });
+    res.locals.current_uri = req.path.split('/');
     next();
 });
 // view engine setup
@@ -41,8 +42,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+app.use(function (req, res, next) {
+    if (req.user) {
+        res.locals.auth_session = req.user;
+    }
+    next();
+});
 require('./passport/pass')(passport);
-require('./routes/index')(app, passport, validator);
+require('./routes/index')(app, passport, moment);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -71,7 +78,7 @@ app.use(function (err, req, res, next) {
         error: {}
     });
 });
-var server = app.listen(8081, function () {
+var server = app.listen(3000, function () {
     console.log("Example app listening at http://localhost:%s", server.address().port);
 });
 module.exports = app;
