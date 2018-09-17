@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2018 at 07:53 AM
+-- Generation Time: Sep 17, 2018 at 08:29 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -36,6 +36,7 @@ CREATE TABLE `users` (
   `email` varchar(254) NOT NULL,
   `password` varchar(255) NOT NULL,
   `phone` varchar(20) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
   `activation_code` varchar(40) DEFAULT NULL,
   `forgotten_password_code` varchar(40) DEFAULT NULL,
   `forgotten_password_time` int(11) UNSIGNED DEFAULT NULL,
@@ -48,9 +49,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `role`, `first_name`, `last_name`, `email`, `password`, `phone`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `last_login`, `active`, `created_on`) VALUES
-(1, 1, 'Super', 'Admin', 'admin@admin.com', '123456', '', '', '41OxdsvwogkRPa7YoTUUku1b6c8113ad4e2f5ac2', 1508057752, 1536338878, 1, 1528767362),
-(7, 2, 'Motilal', 'Soni', 'motilalsoni@gmail.com', '$2y$08$v8Dp4PROqvlpO5G5SVMWc..U9K4RYsyxAsrfTrG/EBy/c.rF6AO9C', '90324978491', NULL, NULL, NULL, 1531417199, 1, 1520696550);
+INSERT INTO `users` (`id`, `role`, `first_name`, `last_name`, `email`, `password`, `phone`, `dob`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `last_login`, `active`, `created_on`) VALUES
+(1, 1, 'Super', 'Admin', 'admin@admin.com', '123456', '', NULL, '', '41OxdsvwogkRPa7YoTUUku1b6c8113ad4e2f5ac2', 1508057752, 1536338878, 1, 1528767362),
+(8, 4, 'Aman', 'Soni', 'mothit@gdjfj.com', '123654', NULL, '2018-09-15', NULL, NULL, NULL, NULL, 1, 0),
+(9, 3, 'sdgh', 'Soni', 'mothit1@gdjfj.com', '123654', NULL, '2018-09-15', NULL, NULL, NULL, NULL, 1, 0),
+(11, 1, 'Super', 'Admin', 'motilalsoni@gmail.com', '123456', '', NULL, '', '41OxdsvwogkRPa7YoTUUku1b6c8113ad4e2f5ac2', 1508057752, 1536338878, 1, 1528767362);
 
 --
 -- Indexes for dumped tables
@@ -70,7 +73,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;COMMIT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
