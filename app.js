@@ -11,6 +11,8 @@ var passport = require('passport');
 var expressSession = require('express-session');
 var flash = require('express-flash');
 var moment = require('moment');
+var fs = require('fs');
+
 
 app.use(function (req, res, next) {
     global.connection = mysql.createPool({
@@ -18,18 +20,24 @@ app.use(function (req, res, next) {
         user: 'root',
         password: '',
         database: 'bifrost',
-        debug: false
+        debug: true
     });
     res.locals.current_uri = req.path.split('/');
     next();
-});
+}); 
+
+global.isAuthenticated = function (req, res, next) {
+    if (!req.isAuthenticated())
+        return next();
+    res.redirect('/admin/login');
+}
 // view engine setup
 app.engine('ejs', engine);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+ 
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/favicon.ico')); 
 app.use(expressSession({secret: 'xmsndofifjfjdodierjierio', resave: true, saveUninitialized: true}));
 
 
@@ -49,7 +57,17 @@ app.use(function (req, res, next) {
     next();
 });
 require('./passport/pass')(passport);
-require('./routes/index')(app, passport, moment);
+//require('./routes/index')(app, passport, moment);
+
+// dynamically include routes (Controller)
+fs.readdirSync('./controllers').forEach(function (file) {
+    if (file.substr(-3) == '.js') {
+        route = require('./controllers/' + file)(app, passport, moment);
+    }
+});
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

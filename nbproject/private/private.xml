@@ -3,9 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/xampp/htdocs/node/bifrost/views/admin/menu.ejs</file>
-            <file>file:/E:/xampp/htdocs/node/bifrost/views/error.ejs</file>
-            <file>file:/E:/xampp/htdocs/node/bifrost/views/admin/layout/layout.ejs</file>
+            <file>file:/E:/xampp/htdocs/node/bifrost/controllers/users.js</file>
         </group>
     </open-files>
 </project-private>

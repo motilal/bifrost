@@ -1,0 +1,94 @@
+<%layout('../layout/layout')%>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="element-wrapper">
+            <h6 class="element-header">Manage Course</h6>
+            <div class="element-box">
+                <form id="formValidate" action="/admin/courses/add_course" method="post">
+                    <h5 class="form-header">Add Course</h5> 
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="package"> Package</label> 
+                                <select class="form-control" name="package" id="package">
+                                    <option value="">Select Package</option>
+                                    <%if (package!=""){ %> 
+                                    <% package.forEach(function(row) { %>
+                                    <option value="<%= row.id %>"><%= row.name %></option>
+                                    <% }); %>    
+                                    <% } %>
+                                </select>  
+                            </div>
+                        </div> 
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="name"> Course Name</label>
+                                <input class="form-control" data-error="Please input Course Name" id="name" placeholder="Course Name" name="name" value="" required="required" type="text">
+                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                            </div>
+                        </div> 
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="category"> Category</label>
+
+                                <select class="form-control" name="category" id="category">
+                                    <option value="">Select Category</option>
+                                    <%if (category!=""){ %> 
+                                    <% category.forEach(function(row) { %>
+                                    <option value="<%= row.id %>"><%= row.name %></option>
+                                    <% }); %>    
+                                    <% } %>
+                                </select> 
+
+                            </div>
+                        </div> 
+
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="duration">Course Duration</label>
+                                <input class="form-control" placeholder="Course Duration"  name="duration" id="duration" value="" type="text">
+                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="age"> Age Allowable </label>
+                                <select class="form-control select2" name="age" multiple="true"> 
+                                    <% for(i=10;i<=18;i++){ %>
+                                    <option value='<%= i %>'><%= i %> Years</option> 
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div> 
+                    </div> 
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="status"> Status </label>
+                                <select class="form-control" id='status' name="status">
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option> 
+                                </select>
+                            </div>
+                        </div>
+                    </div> 
+
+                    <div class="form-buttons-w">
+                        <button class="btn btn-primary" type="submit"> Submit </button>
+                        <a class="btn btn-primary" href='/admin/courses'>Cancel </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>  

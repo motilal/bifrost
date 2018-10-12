@@ -1,0 +1,354 @@
+<%layout('../layout/layout')%>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="element-wrapper">
+            <h6 class="element-header">Enroll New Child</h6>
+            <div class="element-box">
+                <form id="formValidate" action="/admin/courses/enroll_child" method="post">
+                    <h5 class="form-header">Student's Information</h5> 
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="email"> Email *</label>
+                                <input class="form-control" data-error="Your email address is invalid" name="email" required="required" type="email">
+                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                            </div>
+                        </div> 
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="full_name">Student's Full Name *</label>
+                                <input class="form-control" name="full_name" id="full_name" value="" required="required" type="text">
+                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                            </div>
+                        </div>  
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="age">Current Age *</label>
+                                <input class="form-control" name="age" id="age" value="" required="required" type="number">
+                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="dob"> Date of Birth </label>
+                                <input class="single-daterange form-control" type="text" required="required" name="dob" value="">
+                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                            </div>
+                        </div> 
+                    </div>  
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="current_year"> Current Year/Grade  *</label>
+                                <input class="form-control" name="current_year" required="required" type="text">
+                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                            </div>
+                        </div> 
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="current_school"> Current School *</label>
+                                <input class="form-control" name="current_school" required="required" type="text">
+                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                            </div>
+                        </div>  
+                    </div> 
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="home_address"> Home Address  *</label>
+                                <textarea class="form-control" name="home_address" required="required"></textarea>
+                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group mb-0">
+                                <label for="contact_number"> Contact Number *</label>
+                                <input class="form-control" name="contact_number" required="required" type="text">
+                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="current_school"> Sex *</label>
+                                <div>
+                                    <div class="form-check float-left mr-2">
+                                        <label class="form-check-label">
+                                            <input checked="" class="form-check-input" name="gender" type="radio" value="m">Male
+                                        </label>
+                                    </div>
+                                    <div class="form-check float-left">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" name="gender" type="radio" value="f">Female
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+
+                    <h5 class="form-header">Parent's Information</h5> 
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="full_name">Parent's Full Name *</label>
+                                <input class="form-control" name="full_name" id="full_name" value="" required="required" type="text">
+                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                            </div>
+                        </div>  
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="contact_number">Parent's Contact Number *</label>
+                                <input class="form-control" name="contact_number" required="required" type="text">
+                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                            </div>
+                        </div> 
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="email">Parent's Email *</label>
+                                <input class="form-control" data-error="Your email address is invalid" name="email" required="required" type="email">
+                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                            </div>
+                        </div> 
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="full_name">Relationship to Student *</label>
+                                <input class="form-control" name="full_name" id="full_name" value="" required="required" type="text">
+                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                            </div>
+                        </div> 
+                    </div>
+
+                    <h5 class="form-header">Service</h5> 
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="email">Choose the PrepWorks service you are signing up for: If you wish to sign up for more than one service, the option will be available at the end of the next section. </label>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input checked="" class="form-check-input" name="service1" type="radio" value="consulting">Consulting : A one-on-one free consulting session regarding university preparation,boarding school preparation, or suitable courses/tutoring for a student.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input checked="" class="form-check-input" name="service1" type="radio" value="short_courses">Short courses / talks
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input checked="" class="form-check-input" name="service1" type="radio" value="tutoring">Tutoring
+                                    </label>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+
+                    <h5 class="form-header">Consulting Registration</h5> 
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="school_report"> Please upload the student's latest school reports and/or predicted grades *</label>
+                                <input class="form-control" name="school_report" required="required" type="file">
+                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> List of student's current extra-curricular activities *</label>
+                                <textarea class="form-control" name="extra-curricular-activities" required="required"></textarea>
+                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> List of student's achievements and awards (e.g competitions or school awards)   *</label>
+                                <textarea class="form-control" name="achivent_awards" required="required"></textarea>
+                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                            </div>
+                        </div>  
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="email">Do you wish to sign up for another PrepWorks service? (if you have already filled in the information for another service, you do not need to do so again) </label>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" name="service2" type="radio" value="short_courses">Short courses / talks
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input  class="form-check-input" name="service2" type="radio" value="tutoring">Tutoring
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" name="service2" type="radio" value="no">Tutoring
+                                    </label>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+
+                    <h5 class="form-header">Course Registration</h5> 
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Choose the course(s) and/or talk(s) you wish to sign up for: *</label>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" name="service2" type="checkbox" value="1">SAT Maths (15 - 18 years old, 10th (Mon) - 16th (Fri) August, 10am - 12noon)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input  class="form-check-input" name="service2" type="checkbox" value="tutoring">SAT English (15 - 18 years old, 10th (Mon) - 16th (Fri) August, 1pm - 3pm)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" name="service2" type="checkbox" value="no">Speech and Drama (7-10 years old, 20th (Mon) - 24th (Fri) August, 10am-11.30am)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" name="service2" type="checkbox" value="no">Young Writers' Program (7-9 years old, 20th (Mon) - 24th (Fri) August, 1-3pm)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" name="service2" type="checkbox" value="no">Pre-Literature English IGCSE (13-15 years old, 20th (Mon) - 24th (Fri) August, 10am-12no
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" name="service2" type="checkbox" value="no">Debating (15-17 years old, 20th (Mon) - 24th (Fri) August, 1- 3pm)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" name="service2" type="checkbox" value="no">Branding and Marketing (13-15 years old, 13th (Mon) - 17th (Fri) August, 10am - 12pm)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" name="service2" type="checkbox" value="no">English for Key Stage 3 (11 - 12 years old, 6th (Mon) - 10th (Fri) August, 10am - 12pm)
+                                    </label>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+
+                    <div class="form-group">
+                        <label for="current_school"> Are you entitled to any discounts? (Discounts can only be used separately from each other)</label>
+                        <div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" name="gender" type="radio" value="m">Early Bird Discount (5% off) (before 20th July)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" name="gender" type="radio" value="f">Sibling Discount (5% off)                            
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="current_school"> Do you wish to sign up for another PrepWorks service? (if you have already filled in the information for another service, you do not need to do so again) </label>
+                        <div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" name="gender" type="radio" value="m">Tutoring
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" name="gender" type="radio" value="f">Sibling Discount (5% off)                            
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="form-header">Course Registration</h5> 
+                    <div class="form-group">
+                        <label for="current_school"> Please select the student's level of study: </label>
+                        <div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" name="gender" type="radio" value="m">Pre-IGCSE
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" name="gender" type="radio" value="f">IGCSE                            
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" name="gender" type="radio" value="f">A-levels                            
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" name="gender" type="radio" value="f">IB                      
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" name="gender" type="radio" value="f">University                            
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Choose the tutoring subject(s) and/or service(s) you need tutoring for: *</label>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" name="service2" type="checkbox" value="1">English Reading & Comprehension
+                                    </label>
+                                </div>
+                                 <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" name="service2" type="checkbox" value="1">English Reading & Comprehension
+                                    </label>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+
+
+                    <div class="form-buttons-w">
+                        <button class="btn btn-primary" type="submit"> Submit </button>
+                        <a class="btn btn-primary" href='/admin/courses'>Cancel </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>  

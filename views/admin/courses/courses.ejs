@@ -1,0 +1,55 @@
+<%layout('../layout/layout')%>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="element-wrapper">
+            <h6 class="element-header">Manage Courses</h6>
+            <div class="element-box">
+
+                <h5 class="form-header">Manage Courses 
+                    <div class="float-right"><a class="btn btn-sm btn-success" href="/admin/courses/add_course">Add New Course</a></div> 
+                </h5>
+
+                <div class="form-desc"> </div>
+
+                <div class="table-responsive">
+                    <table id="dataTable1" width="100%" class="table table-striped table-lightfont">
+                        <thead>
+                            <tr>
+                                <th>Package Name</th>
+                                <th>Course Name</th>
+                                <th>Age</th>
+                                <th>Duration</th>
+                                <th>Category</th>
+                                <th>Status</th> 
+                                <th>Action</th>
+                            </tr>
+                        </thead> 
+                        <tbody>
+                            <% if(result.length > 0){ %>
+                            <% result.forEach(function(row) { %>
+                            <tr>
+                                <td><strong><%= row.package_name!=null ? row.package_name:'-' %></strong></td>
+                                <td><%= row.name %></td>
+                                <td><%= row.age %></td>
+                                <td><%= row.duration %></td> 
+                                <td><%= row.category_name %></td> 
+                                <td>
+                                    <span class="d-none">
+                                        <%= row.status==1 ? 'Active':'InActive' %>
+                                    </span>
+                                    <div class="status-pill <%= row.status==1 ? 'green':'red' %>" data-title="<%= row.status==1 ? 'Active':'InActive' %>" data-toggle="tooltip" data-original-title="" title=""></div>
+                                </td>
+                                <td class="row-actions">
+                                    <a href="/admin/courses/edit_course/<%= row.id %>"><i class="os-icon os-icon-ui-49"></i></a> 
+                                    <a class="danger" href="/admin/courses/delete_course/<%= row.id %>" onclick='return confirm("Are you sure to wants delete this.");'><i class="os-icon os-icon-ui-15"></i></a>
+                                </td>
+                            </tr>
+                            <% }); %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>  
+    </div> 
+</div>

@@ -1,34 +1,8 @@
 
 module.exports = function (app, passport, moment) {
-
-    /* GET home page. */
-    app.get('/', isAuthenticated, function (req, res) {
-        res.redirect('/admin/dashboard');
-    });
-
-    app.get('/logout', function (req, res) {
-        req.logout();
-        res.redirect('/');
-    });
-
-
-    /*admin function*/
-    app.get('/admin/login', function (req, res) {
-        res.render('admin/login', {message: req.flash('message')});
-    });
-
-    app.post('/admin/login', passport.authenticate('admin_login', {
-        successRedirect: '/admin/dashboard',
-        failureRedirect: '/admin/login',
-        failureFlash: true
-    }));
-    app.get('/admin/dashboard', isAuthenticated, function (req, res) {
-        res.render('admin/dashboard', {});
-    });
-
     /*Student Module*/
     app.get('/admin/users/students', isAuthenticated, function (req, res) {
-        var breadcrumb = [{name: 'Home', link: '/admin/dashboard'}, {name: 'Students', link: ''}];
+        var breadcrumb = [{name: 'Students', link: ''}];
         connection.getConnection(function (err, connection) {
             connection.query('SELECT * from users where role = 4', function (err, users) {
                 connection.release();
@@ -39,7 +13,7 @@ module.exports = function (app, passport, moment) {
 
     app.get('/admin/users/edit_student/:id', isAuthenticated, function (req, res) {
         var id = req.params.id;
-        var breadcrumb = [{name: 'Home', link: '/admin/dashboard'}, {name: 'Students', link: '/amdin/users/students'}, {name: 'Manage Students', link: ''}];
+        var breadcrumb = [{name: 'Students', link: '/admin/users/students'}, {name: 'Manage Students', link: ''}];
         connection.getConnection(function (err, connection) {
             connection.query('SELECT * from users where id = ?', id, function (err, user) {
                 connection.release();
@@ -88,7 +62,7 @@ module.exports = function (app, passport, moment) {
 
     /*Parents Module*/
     app.get('/admin/users/parents', isAuthenticated, function (req, res) {
-        var breadcrumb = [{name: 'Home', link: '/admin/dashboard'}, {name: 'Parents', link: ''}];
+        var breadcrumb = [{name: 'Parents', link: ''}];
         connection.getConnection(function (err, connection) {
             connection.query('SELECT * from users where role = 3', function (err, users) {
                 connection.release();
@@ -99,7 +73,7 @@ module.exports = function (app, passport, moment) {
 
     app.get('/admin/users/edit_parent/:id', isAuthenticated, function (req, res) {
         var id = req.params.id;
-        var breadcrumb = [{name: 'Home', link: '/admin/dashboard'}, {name: 'Parents', link: '/amdin/users/parents'}, {name: 'Manage Parents', link: ''}];
+        var breadcrumb = [{name: 'Parents', link: '/admin/users/parents'}, {name: 'Manage Parents', link: ''}];
         connection.getConnection(function (err, connection) {
             connection.query('SELECT * from users where id = ?', id, function (err, user) {
                 connection.release();
@@ -147,7 +121,7 @@ module.exports = function (app, passport, moment) {
 
     /*Teacher Module*/
     app.get('/admin/users/teachers', isAuthenticated, function (req, res) {
-        var breadcrumb = [{name: 'Home', link: '/admin/dashboard'}, {name: 'Teachers', link: ''}];
+        var breadcrumb = [{name: 'Teachers', link: ''}];
         connection.getConnection(function (err, connection) {
             connection.query('SELECT * from users where role = 2', function (err, users) {
                 connection.release();
@@ -158,7 +132,7 @@ module.exports = function (app, passport, moment) {
 
     app.get('/admin/users/edit_teacher/:id', isAuthenticated, function (req, res) {
         var id = req.params.id;
-        var breadcrumb = [{name: 'Home', link: '/admin/dashboard'}, {name: 'Teachers', link: '/amdin/users/teachers'}, {name: 'Manage Teachers', link: ''}];
+        var breadcrumb = [{name: 'Teachers', link: '/admin/users/teachers'}, {name: 'Manage Teachers', link: ''}];
         connection.getConnection(function (err, connection) {
             connection.query('SELECT * from users where id = ?', id, function (err, user) {
                 connection.release();
@@ -204,18 +178,10 @@ module.exports = function (app, passport, moment) {
         });
     });
 
-    app.get('/admin/attandance', isAuthenticated, function (req, res) {
-        res.render('admin/users/attandance', {});
+    app.get('/admin/users/enroll_child', isAuthenticated, function (req, res) {
+        var breadcrumb = [{name: 'Courses', link: '/admin/courses'}, {name: 'Add Course', link: ''}];
+        res.render('admin/users/enroll_child', {breadcrumb: breadcrumb});
     });
 
 }
-// As with any middleware it is quintessential to call next()
-// if the user is authenticated
-var isAuthenticated = function (req, res, next) {
-    if (req.isAuthenticated())
-        return next();
-    res.redirect('/admin/login');
-}
-
-
 
